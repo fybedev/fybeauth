@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>FybeAuth</title>
+<style>
+  body { font-family: sans-serif; max-width: 700px; margin: 60px auto; padding: 0 20px; }
+  h1 { color: #333; }
+  a { color: #0066cc; }
+  .nav { margin-bottom: 30px; }
+  .nav a { margin-right: 15px; }
+</style>
+</head>
+<body>
+  <h1>FybeAuth – OAuth2 Server</h1>
+  <div class="nav">
+    {% if user %}
+      Logged in as <strong>{{ user.username }}</strong> &nbsp;|&nbsp;
+      <a href="/clients">My Clients</a>
+      <a href="/logout">Logout</a>
+    {% else %}
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    {% endif %}
+  </div>
+  <p>Welcome to the FybeAuth OAuth2 Authorization Server.</p>
+  <ul>
+    <li><strong>Authorization endpoint:</strong> <code>GET /oauth/authorize</code></li>
+    <li><strong>Token endpoint:</strong> <code>POST /oauth/token</code></li>
+    <li><strong>Revocation endpoint:</strong> <code>POST /oauth/revoke</code></li>
+    <li><strong>User info endpoint:</strong> <code>GET /api/userinfo</code> (requires <code>profile</code> scope)</li>
+  </ul>
+</body>
+</html>
