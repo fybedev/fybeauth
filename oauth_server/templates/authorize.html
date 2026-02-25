@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Authorize – FybeAuth</title>
+<style>
+  body { font-family: sans-serif; max-width: 480px; margin: 80px auto; padding: 0 20px; }
+  .scope-list { background: #f5f5f5; padding: 12px 20px; border-radius: 4px; }
+  .btn { padding: 10px 24px; border: none; cursor: pointer; border-radius: 4px; font-size: 15px; }
+  .btn-allow { background: #0066cc; color: #fff; margin-right: 10px; }
+  .btn-deny { background: #ccc; }
+</style>
+</head>
+<body>
+  <h2>Authorize Application</h2>
+  <p>
+    <strong>{{ grant.client.client_name or grant.client.client_id }}</strong>
+    wants to access your account as <strong>{{ user.username }}</strong>.
+  </p>
+  <p>This application is requesting the following permissions:</p>
+  <div class="scope-list">
+    {% for scope in (grant.request.payload.scope or grant.request.scope).split() %}
+      <p>✔ <strong>{{ scope }}</strong></p>
+    {% endfor %}
+  </div>
+  <br>
+  <form method="post">
+    <button class="btn btn-allow" name="confirm" value="true" type="submit">Allow</button>
+    <button class="btn btn-deny" type="submit">Deny</button>
+  </form>
+</body>
+</html>
